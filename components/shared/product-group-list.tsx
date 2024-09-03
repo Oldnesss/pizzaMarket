@@ -5,6 +5,7 @@ import { useIntersection } from "react-use";
 import { Title } from "./title";
 import { ProductCard } from "./product-card";
 import { cn } from "@/lib/utils";
+import { useCategoryStore } from "@/store/category";
 
 interface Props {
   title: string;
@@ -21,6 +22,7 @@ export const ProductGroupList: React.FC<Props> = ({
   categoryId,
   className,
 }) => {
+  const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
   const intersectionRef = React.useRef(null);
   const intersection = useIntersection(intersectionRef, {
     threshold: 0.4,
@@ -28,7 +30,7 @@ export const ProductGroupList: React.FC<Props> = ({
 
   React.useEffect(() => {
     if (intersection?.isIntersecting) {
-      console.log(title, categoryId);
+      setActiveCategoryId(categoryId);
     }
   }, [categoryId, intersection?.isIntersecting, title]);
   return (

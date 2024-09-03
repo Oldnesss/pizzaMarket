@@ -24,6 +24,7 @@ export default function Home() {
             <div className="flex flex-col gap-16">
               <ProductGroupList
                 title="Пиццы"
+                categoryId={1}
                 items={[
                   {
                     id: 1,
@@ -90,13 +91,15 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                 ]}
-                categoryId={1}
+                
               />
+              
               <ProductGroupList
                 title="Комбо"
+                categoryId={2}
                 items={[
                   {
-                    id: 9,
+                    id: 1,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -104,7 +107,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                   {
-                    id: 10,
+                    id: 2,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -112,7 +115,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                   {
-                    id: 11,
+                    id: 3,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -120,7 +123,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                   {
-                    id: 12,
+                    id: 4,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -128,7 +131,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                   {
-                    id: 13,
+                    id: 5,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -136,7 +139,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                   {
-                    id: 14,
+                    id: 6,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -144,7 +147,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                   {
-                    id: 15,
+                    id: 7,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -152,7 +155,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                   {
-                    id: 16,
+                    id: 8,
                     name: "Пицца",
                     imageUrl:
                       "https://media.dodostatic.net/image/r:292x292/11EF438E93884BFEBFE79D11095AE2D4.avif",
@@ -160,7 +163,7 @@ export default function Home() {
                     items: [{ price: 550 }],
                   },
                 ]}
-                categoryId={2}
+                
               />
             </div>
           </div>
