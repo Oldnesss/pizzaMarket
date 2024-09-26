@@ -7,59 +7,27 @@ import { FilterCheckbox } from "./filter-checkbox";
 import { Input } from "../ui";
 import { RangeSlider } from "./range-slider";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
-import { useFilterIngredients } from "@/hooks/useFilterIngredients";
-import { useSet } from "react-use";
 import qs from "qs";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter} from "next/navigation";
+import { useIngredients } from "@/hooks/useIngredients";
+import { useFilters } from "@/hooks/useFilters";
+
 
 interface Props {
   className?: string;
 }
 
-interface PriceProps {
-  priceFrom?: number;
-  priceTo?: number;
-}
-
 export const Filters: React.FC<Props> = ({ className }) => {
-  const useParams = useSearchParams();
   const router = useRouter();
-  const { ingredients, loading, onAddId, selectedIngredients } =
-    useFilterIngredients();
+  const { ingredients, loading } = useIngredients();
+  const filters = useFilters();
 
-  const [sizes, { toggle: toggleSizes }] = useSet(new Set<string>([]));
-  const [pizzaTypes, { toggle: togglePizzaTypes }] = useSet(
-    new Set<string>([])
-  );
-
-  const [prices, setPrice] = React.useState<PriceProps>({});
   const items = ingredients.map((item) => ({
     value: String(item.id),
     text: item.name,
   }));
 
-  const updatePrice = (name: keyof PriceProps, value: number) => {
-    setPrice({
-      ...prices,
-      [name]: value,
-    });
-  };
-
-  React.useEffect(() => {
-    const filters = {
-      ...prices,
-      pizzaTypes: Array.from(pizzaTypes),
-      sizes: Array.from(sizes),
-      ingredients: Array.from(selectedIngredients),
-    };
-    // console.log({ prices, pizzaTypes, sizes, selectedIngredients });
-
-    const query = qs.stringify(filters, {
-      arrayFormat: "comma",
-    });
-
-    router.push(`?${query}`);
-  }, [prices, pizzaTypes, sizes, selectedIngredients, router]);
+  
 
   return (
     <div className={cn(" ", className)}>
