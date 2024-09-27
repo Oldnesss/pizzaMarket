@@ -1,4 +1,5 @@
 import { Container, ProductImage, Title } from "@/components/shared";
+import { GroupVariants } from "@/components/shared/group-variants";
 import { prisma } from "@/prisma/prisma-client";
 import { notFound } from "next/navigation";
 
@@ -24,6 +25,23 @@ export default async function ProductPage({
           />
 
           <p className="text-gray-400">Lorem ipsum dolor sit </p>
+          <GroupVariants
+          selectedValue="2"
+            items={[
+              {
+                name: "Маленькая",
+                value: "1",
+              },
+              {
+                name: "Средняя",
+                value: "2",
+              },
+              {
+                name: "Большая",
+                value: "3",
+              },
+            ]}
+          />
         </div>
       </div>
     </Container>
