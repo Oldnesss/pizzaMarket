@@ -12,5 +12,6 @@ export { ProductGroupList } from "./product-group-list";
 export { FilterCheckbox } from "./filter-checkbox";
 export { PizzaImage } from "./pizza-image";
 export { ChooseProductForm } from "./choose-product-form";
+export { IngredientItem } from "./ingredient-item";
 
 export * from "./modals";
