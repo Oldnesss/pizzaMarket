@@ -5,7 +5,7 @@ import { Title } from "./title";
 import { Input } from "../ui";
 import { RangeSlider } from "./range-slider";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
-import { useQueryFIlters, useIngredients, useFilters } from "@/hooks";
+import { useQueryFilters, useIngredients, useFilters } from "@/hooks";
 
 interface Props {
   className?: string;
@@ -15,7 +15,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
   const { ingredients, loading } = useIngredients();
   const filters = useFilters();
 
-  useQueryFIlters(filters);
+  useQueryFilters(filters);
 
   const items = ingredients.map((item) => ({
     value: String(item.id),
