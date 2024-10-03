@@ -10,5 +10,8 @@ export { TopBar } from "./top-bar";
 export { Filters } from "./filters";
 export { ProductGroupList } from "./product-group-list";
 export { FilterCheckbox } from "./filter-checkbox";
-export { CheckboxFiltersGroup } from "./checkbox-filters-group";
-export { ProductCard } from "./product-card";
+export { PizzaImage } from "./pizza-image";
+export { ChooseProductForm } from "./choose-product-form";
+export { IngredientItem } from "./ingredient-item";
+
+export * from "./modals";

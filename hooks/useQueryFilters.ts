@@ -4,7 +4,7 @@ import qs from 'qs';
 import { useRouter } from 'next/navigation';
 
 
-export const useQueryFIlters = (filters: Filters) => {
+export const useQueryFilters = (filters: Filters) => {
 
   const router = useRouter();
 
