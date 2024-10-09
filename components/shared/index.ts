@@ -13,5 +13,8 @@ export { FilterCheckbox } from "./filter-checkbox";
 export { PizzaImage } from "./pizza-image";
 export { ChooseProductForm } from "./choose-product-form";
 export { IngredientItem } from "./ingredient-item";
+export { CartButton } from "./cart-button";
+export { CartDrawer } from "./cart-drawer";
+export { CartDrawerItem } from "./cart-drawer-item";
 
 export * from "./modals";
