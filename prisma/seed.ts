@@ -38,9 +38,16 @@ async function up() {
       {
         fullName: "Admin Adimn",
         email: "admin@test.ru",
-        password: hashSync("111111", 10),
+        password: hashSync("222222", 10),
         verified: new Date(),
         role: "ADMIN",
+      },
+      {
+        fullName: "2 2",
+        email: "222@222.ru",
+        password: hashSync("333333", 10),
+        verified: new Date(),
+        role: "USER",
       },
     ],
   });
@@ -70,7 +77,7 @@ async function up() {
     data: [
       {
         userId: 1,
-        totalAmount: 0,
+        totalAmount: 650,
         token: "111111",
       },
       {
