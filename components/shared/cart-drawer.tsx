@@ -17,6 +17,7 @@ import { getCartItemDetails } from "@/lib";
 import { useCartStore } from "@/store";
 import { PizzaSize, PizzaType } from "@/constant/pizza";
 
+
 interface Props {
   className?: string;
 }
@@ -25,15 +26,28 @@ export const CartDrawer: React.FC<PropsWithChildren<Props>> = ({
   children,
   className,
 }) => {
-  const [totalAmount, fetchCartItems, items] = useCartStore((state) => [
-    state.totalAmount,
-    state.fetchCartItems,
-    state.items,
-  ]);
+  const [totalAmount, fetchCartItems, updateItemQuantity, items, removeCartItem] = useCartStore(
+    (state) => [
+      state.totalAmount,
+      state.fetchCartItems,
+      state.updateItemQuantity,
+      state.items,
+      state.removeCartItem,
+    ]
+  );
 
   React.useEffect(() => {
     fetchCartItems();
   }, []);
+
+  const onClickCountButton = (
+    id: number,
+    quantity: number,
+    type: "plus" | "minus"
+  ) => {
+    const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
+    updateItemQuantity(id, newQuantity);
+  };
 
   return (
     <Sheet>
@@ -41,7 +55,7 @@ export const CartDrawer: React.FC<PropsWithChildren<Props>> = ({
       <SheetContent className="flex flex-col justify-between pb-0 bg-[#F4f1EE]">
         <SheetHeader>
           <SheetTitle>
-            В корзине <span className="font-bold">3 товара</span>
+            В корзине <span className="font-bold">{items.length}</span>
           </SheetTitle>
         </SheetHeader>
         <div className="-mx-6 mt-5 overflow-auto  flex-1">
@@ -63,6 +77,10 @@ export const CartDrawer: React.FC<PropsWithChildren<Props>> = ({
                 name={item.name}
                 price={item.price}
                 quantity={item.quantity}
+                onClickCountButton={(type) =>
+                  onClickCountButton(item.id, item.quantity, type)
+                }
+                onClickRemove={() => removeCartItem(item.id)}
               />
             ))}
           </div>
