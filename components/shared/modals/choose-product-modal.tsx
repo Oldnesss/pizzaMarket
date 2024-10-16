@@ -21,35 +21,27 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
   const firstItem = product.items[0];
   const isPizzaForm = Boolean(firstItem.pizzaType);
 
-  const [addCartItem, loading ]= useCartStore((state) => [state.addCartItem, state.loading]);
-  
+  const [addCartItem, loading] = useCartStore((state) => [
+    state.addCartItem,
+    state.loading,
+  ]);
 
-  const onAddProduct = () => {
-    addCartItem({
-      productItemId: firstItem.id,
-    });
-  };
-  const onAddPizza = async (productItemId: number, ingredients: number[]) => {
+  const onSubmit = async (productItemId?: number, ingredients?: number[]) => {
     try {
+      const itemId = productItemId ?? firstItem.id;
+
       await addCartItem({
-        productItemId,
+        productItemId: itemId,
         ingredients,
       });
-      toast.success("Пицца добавлена в корзину");
+
+      toast.success(`${product.name} добавлен в корзину`);
       router.back();
     } catch (error) {
-      toast.error("Не удалось добавить пиццу в корзину");
+      toast.error(`Не удалось добавить ${product.name} в корзину`);
       console.error(error);
     }
   };
-
-  /* const onSubmit = () => {
-    if (isPizzaForm) {
-      onAddPizza(firstItem.id, []);
-    } else {
-      onAddProduct();
-    }
-  }; */
 
   return (
     <Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
@@ -65,16 +57,16 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
             name={product.name}
             ingredients={product.ingredients}
             items={product.items}
-            onSubmit={onAddPizza}
-            loading={loading }
+            onSubmit={onSubmit}
+            loading={loading}
           />
         ) : (
           <ChooseProductForm
             imageUrl={product.imageUrl}
             name={product.name}
-            onSubmit={onAddProduct}
+            onSubmit={onSubmit}
             price={firstItem.price}
-            loading={loading }
+            loading={loading}
           />
         )}
       </DialogContent>
