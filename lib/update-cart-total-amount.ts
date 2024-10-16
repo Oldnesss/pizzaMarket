@@ -55,3 +55,4 @@ export const updateCartTotalAmount = async (token: string) => {
     },
   });
 };
+

@@ -17,7 +17,6 @@ import { getCartItemDetails } from "@/lib";
 import { useCartStore } from "@/store";
 import { PizzaSize, PizzaType } from "@/constant/pizza";
 
-
 interface Props {
   className?: string;
 }
@@ -26,15 +25,19 @@ export const CartDrawer: React.FC<PropsWithChildren<Props>> = ({
   children,
   className,
 }) => {
-  const [totalAmount, fetchCartItems, updateItemQuantity, items, removeCartItem] = useCartStore(
-    (state) => [
-      state.totalAmount,
-      state.fetchCartItems,
-      state.updateItemQuantity,
-      state.items,
-      state.removeCartItem,
-    ]
-  );
+  const [
+    totalAmount,
+    fetchCartItems,
+    updateItemQuantity,
+    items,
+    removeCartItem,
+  ] = useCartStore((state) => [
+    state.totalAmount,
+    state.fetchCartItems,
+    state.updateItemQuantity,
+    state.items,
+    state.removeCartItem,
+  ]);
 
   React.useEffect(() => {
     fetchCartItems();
@@ -59,8 +62,8 @@ export const CartDrawer: React.FC<PropsWithChildren<Props>> = ({
           </SheetTitle>
         </SheetHeader>
         <div className="-mx-6 mt-5 overflow-auto  flex-1">
-          <div className="mb-2">
-            {items.map((item) => (
+          {items.map((item) => (
+            <div className="mb-2">
               <CartDrawerItem
                 key={item.id}
                 id={item.id}
@@ -82,8 +85,8 @@ export const CartDrawer: React.FC<PropsWithChildren<Props>> = ({
                 }
                 onClickRemove={() => removeCartItem(item.id)}
               />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Items */}
