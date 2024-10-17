@@ -37,10 +37,34 @@ export const findPizzas = async (params: GetSearchParams) => {
                 },
               }
             : undefined,
+          items: {
+            some: {
+              size: {
+                in: sizes,
+              },
+              pizzaType: {
+                in: pizzaTypes,
+              },
+              price: {
+                gte: minPrice,
+                lte: macPrice,
+              },
+            },
+          },
         },
         include: {
           ingredients: true,
-          items: true,
+          items: {
+            where: {
+              price: {
+                gte: minPrice,
+                lte: macPrice,
+              },
+            },
+            orderBy: {
+              price: "asc",
+            },
+          },
         },
       },
     },

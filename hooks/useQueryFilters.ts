@@ -1,11 +1,9 @@
-import React from 'react';
-import { Filters } from './useFilters';
-import qs from 'qs';
-import { useRouter } from 'next/navigation';
-
+import React from "react";
+import { Filters } from "./useFilters";
+import qs from "qs";
+import { useRouter } from "next/navigation";
 
 export const useQueryFilters = (filters: Filters) => {
-
   const router = useRouter();
 
   React.useEffect(() => {
@@ -25,5 +23,4 @@ export const useQueryFilters = (filters: Filters) => {
       scroll: false,
     });
   }, [filters, router]);
-  
 };
