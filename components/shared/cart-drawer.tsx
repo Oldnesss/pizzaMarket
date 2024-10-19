@@ -19,6 +19,7 @@ import { useCartStore } from "@/store";
 import { PizzaSize, PizzaType } from "@/constant/pizza";
 import { Title } from "./title";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/hooks";
 
 interface Props {
   className?: string;
@@ -28,23 +29,7 @@ export const CartDrawer: React.FC<PropsWithChildren<Props>> = ({
   children,
   className,
 }) => {
-  const [
-    totalAmount,
-    fetchCartItems,
-    updateItemQuantity,
-    items,
-    removeCartItem,
-  ] = useCartStore((state) => [
-    state.totalAmount,
-    state.fetchCartItems,
-    state.updateItemQuantity,
-    state.items,
-    state.removeCartItem,
-  ]);
-
-  React.useEffect(() => {
-    fetchCartItems();
-  }, []);
+  const { totalAmount, updateItemQuantity, items, removeCartItem  } = useCart()
 
   const onClickCountButton = (
     id: number,
