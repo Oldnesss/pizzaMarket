@@ -1,26 +1,25 @@
 "use client";
 
 import { Container, Title, WhiteBlock } from "@/components/shared";
-import {
-  CheckoutItem,
-  CheckoutItemDetails,
-} from "@/components/shared/checkout";
-import { Button, Input, Textarea } from "@/components/ui";
+import { CheckoutItem, CheckoutSidebar } from "@/components/shared/checkout";
+import { Input, Textarea } from "@/components/ui";
 import { PizzaSize, PizzaType } from "@/constant/pizza";
 import { useCart } from "@/hooks";
 import { getCartItemDetails } from "@/lib";
-import { ArrowRight, Package, Percent, Truck } from "lucide-react";
+import { useState } from "react";
 
 export default function CheckoutPage() {
   const { totalAmount, updateItemQuantity, items, removeCartItem } = useCart();
+  const [redirecting, setRedirecting] = useState(false);
 
-  function onClickCountButton(
+  const onClickCountButton = (
     id: number,
     quantity: number,
-    type: string
-  ): void {
-    throw new Error("Function not implemented.");
-  }
+    type: "plus" | "minus"
+  ) => {
+    const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
+    updateItemQuantity(id, newQuantity);
+  };
 
   return (
     <Container className="mt-10">
@@ -38,15 +37,11 @@ export default function CheckoutPage() {
                   key={item.id}
                   id={item.id}
                   imageUrl={item.imageUrl}
-                  details={
-                    item.pizzaSize && item.pizzaType
-                      ? getCartItemDetails(
-                          item.ingredients,
-                          item.pizzaType as PizzaType,
-                          item.pizzaSize as PizzaSize
-                        )
-                      : ""
-                  }
+                  details={getCartItemDetails(
+                    item.ingredients,
+                    item.pizzaType as PizzaType,
+                    item.pizzaSize as PizzaSize
+                  )}
                   disabled={item.disabled}
                   name={item.name}
                   price={item.price}
@@ -88,47 +83,7 @@ export default function CheckoutPage() {
         {/* Правая часть */}
 
         <div className="w-[450px]">
-          <WhiteBlock className="p-6 sticky top-4">
-            <div className="flex flex-col gap-1">
-              <span className="text-xl">Итого:</span>
-              <span className="text-4xl font-extrabold">{totalAmount} P</span>
-            </div>
-            <CheckoutItemDetails
-              title={
-                <div className="flex items-center">
-                  <Package size={20} className="mr-2 text-gray-300" />
-                  Стоимость товаров:
-                </div>
-              }
-              value="3000 P"
-            />
-            <CheckoutItemDetails
-              title={
-                <div className="flex items-center">
-                  <Percent size={20} className="mr-2 text-gray-300" />
-                  Налоги:
-                </div>
-              }
-              value="3000 P"
-            />
-            <CheckoutItemDetails
-              title={
-                <div className="flex items-center">
-                  <Truck size={20} className="mr-2 text-gray-300" />
-                  Доставка:
-                </div>
-              }
-              value="3000 P"
-            />
-
-            <Button
-              type="submit"
-              className="w-full h-14 rounded-2xl mt-6 text-base font-bold"
-            >
-              Перейти к оплате
-              <ArrowRight className="w-5 ml-2" />
-            </Button>
-          </WhiteBlock>
+          <CheckoutSidebar totalAmount={totalAmount} />
         </div>
       </div>
     </Container>
