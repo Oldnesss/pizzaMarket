@@ -23,6 +23,7 @@ export { ErrorText } from "./error-text";
 export { ClearButton } from "./clear-button";
 export { AddressInput } from "./address-input";
 
+export * from "../email-templates";
 export * from "./checkout";
 export * from "./form-components";
 export * from "./modals";

@@ -72,23 +72,21 @@ export async function createOrder(data: CheckoutFormValues) {
       },
     });
 
-
     const paymentUrl = paymentData.confirmation.confirmation_url;
 
     await sendEmail(
       data.email,
-      'Next Pizza / Оплатите заказ #' + order.id,
+      "Next Pizza / Оплатите заказ #" + order.id,
       PayOrderTemplate({
         orderId: order.id,
         totalAmount: order.totalAmount,
         paymentUrl,
-      }),
+      })
     );
 
     return paymentUrl;
-  } catch (error) {
-    
+  } catch (err) {
+    console.log('[CreateOrder] Server error', err)
   }
+  
 }
-
-
