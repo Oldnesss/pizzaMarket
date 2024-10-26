@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import React, { useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Container } from "./container";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -10,10 +10,12 @@ import { SearchInput } from "./search-input";
 import Link from "next/link";
 import { CartButton } from "./cart-button";
 
-import { useRouter } from "next/router";
-import { useSearchParams } from 'next/navigation'
+import router, { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-
+import { useSession, signIn } from "next-auth/react";
+import { ProfileButton } from "./profile-button";
+import { AuthModal } from "./modals/auth-modal";
 
 interface Props {
   hasSearch?: boolean;
@@ -26,33 +28,31 @@ export const Header: React.FC<Props> = ({
   hasCart = true,
   className,
 }) => {
+  const { data: session } = useSession();
+  const [openAuthModal, setOpenAuthModal] = useState(false);
 
-
-
- const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    let toastMessage = '';
-    if(searchParams.has('paid')){
-      toastMessage = 'Заказ успешно оплачен! Инфо по заказу отправлена на почту.'
-    }
-    
-    if(searchParams.has('verified')){
-      toastMessage = 'Почта успешно подтверждена!'
+    let toastMessage = "";
+    if (searchParams.has("paid")) {
+      toastMessage =
+        "Заказ успешно оплачен! Инфо по заказу отправлена на почту.";
     }
 
-    if(toastMessage) {
+    if (searchParams.has("verified")) {
+      toastMessage = "Почта успешно подтверждена!";
+    }
+
+    if (toastMessage) {
       setTimeout(() => {
-        router.replace('/');
+        router.replace("/");
         toast.success(toastMessage, {
           duration: 3000,
-        })
-      }, 1000)
+        });
+      }, 1000);
     }
-    
-
-
-  },[])
+  }, []);
 
   return (
     <header className={cn(" border-b", className)}>
@@ -79,12 +79,13 @@ export const Header: React.FC<Props> = ({
         {/* Правая часть*/}
 
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="flex items-center gap-1">
-            <User size={16} />
-            Войти
-          </Button>
+          <AuthModal
+            open={openAuthModal}
+            onClose={() => setOpenAuthModal(false)}
+          />
+          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
 
-          { hasCart && <CartButton />}
+          {hasCart && <CartButton />}
         </div>
       </Container>
     </header>
