@@ -23,6 +23,8 @@ export { ErrorText } from "./error-text";
 export { ClearButton } from "./clear-button";
 export { AddressInput } from "./address-input";
 export { ProfileButton } from "./profile-button";
+export { ProfileForm } from "./profile-form";
+export { InfoBlock } from "./info-block";
 
 export * from "../email-templates";
 export * from "./checkout";

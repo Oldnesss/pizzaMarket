@@ -1,10 +1,13 @@
 "use server";
 
+import { VerificationUserTemplate } from "@/components/email-templates";
 import { PayOrderTemplate } from "@/components/email-templates/pay-order";
 import { CheckoutFormValues } from "@/constant";
 import { createPayment, sendEmail } from "@/lib";
+import { getUserSession } from "@/lib/get-user-session";
 import { prisma } from "@/prisma/prisma-client";
 import { OrderStatus, Prisma } from "@prisma/client";
+import { hashSync } from "bcrypt";
 import { cookies } from "next/headers";
 
 export async function createOrder(data: CheckoutFormValues) {
