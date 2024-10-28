@@ -25,6 +25,7 @@ export { AddressInput } from "./address-input";
 export { ProfileButton } from "./profile-button";
 export { ProfileForm } from "./profile-form";
 export { InfoBlock } from "./info-block";
+export { Stories } from "./stories";
 
 export * from "../email-templates";
 export * from "./checkout";
