@@ -1,7 +1,12 @@
-import { Container, Filters, TopBar, Title } from "@/components/shared";
+import {
+  Container,
+  Filters,
+  TopBar,
+  Title,
+  Stories,
+} from "@/components/shared";
 import { ProductGroupList } from "@/components/shared/product-group-list";
 import { findPizzas, GetSearchParams } from "@/lib/find-pizzas";
-import { prisma } from "@/prisma/prisma-client";
 import { Suspense } from "react";
 
 export default async function Home({
@@ -23,7 +28,7 @@ export default async function Home({
         )}
       />
 
-        <Stories />
+      <Stories />
 
       <Container className="mt-10 pb-14">
         <div className="flex gap-[80px]">

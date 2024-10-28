@@ -26,6 +26,7 @@ export { ProfileButton } from "./profile-button";
 export { ProfileForm } from "./profile-form";
 export { InfoBlock } from "./info-block";
 export { Stories } from "./stories";
+export { StoriesCarousel } from "./stories-carousel";
 
 export * from "../email-templates";
 export * from "./checkout";
