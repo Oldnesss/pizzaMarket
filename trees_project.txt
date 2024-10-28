@@ -1,0 +1,219 @@
+.
+├── @types
+│   ├── next-auth.d.ts
+│   ├── prisma.ts
+│   └── yookassa.ts
+├── README.md
+├── app
+│   ├── (checkout)
+│   │   ├── checkout
+│   │   │   └── page.tsx
+│   │   └── layout.tsx
+│   ├── (dashboard)
+│   │   ├── dashboard
+│   │   │   ├── page.tsx
+│   │   │   └── products
+│   │   │       └── page.tsx
+│   │   └── layout.tsx
+│   ├── (root)
+│   │   ├── @modal
+│   │   │   ├── (.)product
+│   │   │   │   └── [id]
+│   │   │   │       └── page.tsx
+│   │   │   ├── [...catchAll]
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── not-auth
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── product
+│   │   │   └── [id]
+│   │   │       └── page.tsx
+│   │   └── profile
+│   │       └── page.tsx
+│   ├── actions.ts
+│   ├── api
+│   │   ├── auth
+│   │   │   ├── [...nextauth]
+│   │   │   │   └── route.ts
+│   │   │   ├── me
+│   │   │   │   └── route.ts
+│   │   │   └── verify
+│   │   │       └── route.ts
+│   │   ├── cart
+│   │   │   ├── [id]
+│   │   │   │   └── route.ts
+│   │   │   └── route.ts
+│   │   ├── checkout
+│   │   │   └── callback
+│   │   │       └── route.ts
+│   │   ├── ingredients
+│   │   │   └── route.ts
+│   │   ├── products
+│   │   │   └── search
+│   │   │       └── route.ts
+│   │   ├── stories
+│   │   │   └── route.ts
+│   │   └── users
+│   │       └── route.ts
+│   ├── favicon.ico
+│   ├── globals.css
+│   └── layout.tsx
+├── components
+│   ├── email-templates
+│   │   ├── index.ts
+│   │   ├── order-success.tsx
+│   │   ├── pay-order.tsx
+│   │   └── verification-user.tsx
+│   ├── shared
+│   │   ├── address-input.tsx
+│   │   ├── cart-button.tsx
+│   │   ├── cart-drawer-item.tsx
+│   │   ├── cart-drawer.tsx
+│   │   ├── cart-item-details
+│   │   │   ├── cart-item-details-count-button.tsx
+│   │   │   ├── cart-item-details-image.tsx
+│   │   │   ├── cart-item-details-price.tsx
+│   │   │   ├── cart-item-details.types.ts
+│   │   │   ├── cart-item-info.tsx
+│   │   │   └── index.ts
+│   │   ├── categories.tsx
+│   │   ├── checkbox-filters-group.tsx
+│   │   ├── checkout
+│   │   │   ├── checkout-address-form.tsx
+│   │   │   ├── checkout-cart.tsx
+│   │   │   ├── checkout-item-details.tsx
+│   │   │   ├── checkout-item-skeleton.tsx
+│   │   │   ├── checkout-item.tsx
+│   │   │   ├── checkout-personal-form.tsx
+│   │   │   ├── checkout-sidebar.tsx
+│   │   │   └── index.ts
+│   │   ├── choose-pizza-form.tsx
+│   │   ├── choose-product-form.tsx
+│   │   ├── clear-button.tsx
+│   │   ├── container.tsx
+│   │   ├── count-button.tsx
+│   │   ├── count-icon-button.tsx
+│   │   ├── error-text.tsx
+│   │   ├── filter-checkbox.tsx
+│   │   ├── filters.tsx
+│   │   ├── form-components
+│   │   │   ├── form-input.tsx
+│   │   │   ├── form-textarea.tsx
+│   │   │   └── index.ts
+│   │   ├── group-variants.tsx
+│   │   ├── header.tsx
+│   │   ├── index.ts
+│   │   ├── info-block.tsx
+│   │   ├── ingredient-item.tsx
+│   │   ├── modals
+│   │   │   ├── auth-modal
+│   │   │   │   ├── auth-modal.tsx
+│   │   │   │   ├── forms
+│   │   │   │   │   ├── login-form.tsx
+│   │   │   │   │   ├── register-form.tsx
+│   │   │   │   │   └── schemas.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── choose-product-modal.tsx
+│   │   │   └── index.ts
+│   │   ├── pizza-image.tsx
+│   │   ├── product-card.tsx
+│   │   ├── product-form.tsx
+│   │   ├── product-group-list.tsx
+│   │   ├── profile-button.tsx
+│   │   ├── profile-form.tsx
+│   │   ├── providers.tsx
+│   │   ├── range-slider.tsx
+│   │   ├── required-symbol.tsx
+│   │   ├── search-input.tsx
+│   │   ├── sort-popup.tsx
+│   │   ├── stories.tsx
+│   │   ├── title.tsx
+│   │   ├── top-bar.tsx
+│   │   └── white-block.tsx
+│   └── ui
+│       ├── button.tsx
+│       ├── checkbox.tsx
+│       ├── dialog.tsx
+│       ├── drawer.tsx
+│       ├── index.ts
+│       ├── input.tsx
+│       ├── popover.tsx
+│       ├── select.tsx
+│       ├── sheet.tsx
+│       ├── skeleton.tsx
+│       ├── slider.tsx
+│       └── textarea.tsx
+├── components.json
+├── constant
+│   ├── auth-options.ts
+│   ├── checkout-form-schema.ts
+│   ├── index.ts
+│   └── pizza.ts
+├── hooks
+│   ├── index.ts
+│   ├── useCart.ts
+│   ├── useFilters.ts
+│   ├── useIngredients.ts
+│   ├── usePizzaOptions.ts
+│   └── useQueryFilters.ts
+├── lib
+│   ├── calc-cart-item-total-price.ts
+│   ├── calc-total-pizza-price.ts
+│   ├── create-payment.ts
+│   ├── find-of-create-cart.ts
+│   ├── find-pizzas.ts
+│   ├── get-available-pizza-sizes.ts
+│   ├── get-cart-details.ts
+│   ├── get-cart-item-details.ts
+│   ├── get-pizza-details.ts
+│   ├── get-user-session.ts
+│   ├── index.ts
+│   ├── send-email.ts
+│   ├── update-cart-total-amount.ts
+│   └── utils.ts
+├── next-env.d.ts
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── prisma
+│   ├── constants.ts
+│   ├── migrations
+│   │   ├── 20240906145119_
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   ├── prisma-client.ts
+│   ├── schema.prisma
+│   └── seed.ts
+├── public
+│   ├── assets
+│   │   └── images
+│   │       ├── empty-box.png
+│   │       ├── lock.png
+│   │       ├── not-found.png
+│   │       ├── numbers-icon.png
+│   │       └── phone-icon.png
+│   ├── logo.png
+│   └── logo.svg
+├── services
+│   ├── api-client.ts
+│   ├── auth.ts
+│   ├── cart.ts
+│   ├── constants.ts
+│   ├── dto
+│   │   └── cart.dto.ts
+│   ├── ingredients.ts
+│   ├── instance.ts
+│   ├── products.ts
+│   └── stories.ts
+├── store
+│   ├── cart.ts
+│   ├── category.ts
+│   └── index.ts
+├── tailwind.config.ts
+├── trees_project.txt
+└── tsconfig.json
+
+53 directories, 164 files
