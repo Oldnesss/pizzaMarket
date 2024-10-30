@@ -42,6 +42,7 @@ export const StoriesCarousel: React.FC<StoriesCarouselProps> = ({
       </button>
       <div className="flex overflow-hidden gap-2 w-full justify-center">
         {visibleStories.map((story, index) => (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             key={story.id}
             src={story.previewImageUrl}

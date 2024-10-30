@@ -53,7 +53,7 @@ git clone https://github.com/Oldnesss/pizzaMarket.git
 
 	2.	Перейдите в директорию проекта:
 
-cd pizza_next
+cd pizza_market
 
 
 	3.	Установите зависимости:
