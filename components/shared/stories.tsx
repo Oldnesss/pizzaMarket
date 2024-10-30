@@ -7,7 +7,7 @@ import { IStory } from "@/services/stories";
 import { Container } from "./container";
 import { X } from "lucide-react";
 import ReactStories from "react-insta-stories";
-import StoriesCarousel from "./stories-carousel";
+import { StoriesCarousel } from "./stories-carousel";
 
 interface Props {
   className?: string;
@@ -29,7 +29,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
   }, []);
 
   const onClickStory = (story: IStory, index: number) => {
-    console.log("Clicked story:", story);
+    // console.log("Clicked story:", story);
     setSelectedStory(story);
     setCurrentStoryIndex(index);
     if (story.items.length > 0) {

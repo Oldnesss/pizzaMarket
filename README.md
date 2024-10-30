@@ -1,37 +1,116 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+Pizza Market
 
-```bash
+Проект Pizza Market — это веб-приложение для реализации продукции пиццерии. Создан с использованием Next.js, Prisma для взаимодействия с базой данных, а также таких библиотек, как React, Tailwind CSS, Zustand, и других.
+
+Функции проекта
+
+	•	Основные функции проекта
+
+	•	Каталог продуктов: Пользователи могут просматривать ассортимент продукции (пиццы и другие категории). Функция реализована через компонент product-card, отображающий название, изображение, цену и описание продуктов. Взаимодействие с продуктами доступно через компоненты choose-pizza-form, choose-product-form и корзину.
+
+	•	Корзина: Пользователь может добавлять и удалять продукты в корзину. Корзина представлена компонентом cart-drawer с подробностями о каждом товаре через cart-item-details. Также есть подсчет общей стоимости через calc-cart-item-total-price.
+
+	•	Чек-аут: Пользователь оформляет заказ через страницу /checkout, которая отображает форму с выбором адреса, контактных данных и оплатой. Компонент checkout разделен на checkout-address-form, checkout-personal-form, checkout-item-details и боковую панель checkout-sidebar.
+
+	•	Поиск и фильтры: На главной странице доступен поиск и фильтрация продуктов. Фильтры реализованы компонентами filter-checkbox, checkbox-filters-group и filters.
+
+	•	Авторизация и профиль пользователя: Для управления учетной записью пользователя, регистрации и входа используется модальное окно auth-modal с формами login-form и register-form. Авторизация осуществляется через next-auth, и профиль пользователя доступен на /profile.
+
+	•	Истории: Реализован компонент историй (stories), отображающий интерактивные карточки с лентой (carousel) и функцией модального просмотра контента. Компонент stories-carousel отвечает за бесконечную прокрутку превью историй.
+
+	•	Панель администратора: Страницы /dashboard и /dashboard/products предназначены для управления продуктами, обновления информации и добавления новых позиций в каталог.
+
+	•	API и Prisma: Используются API маршруты в app/api для работы с продуктами, корзиной, пользователями и историями. Prisma отвечает за взаимодействие с PostgreSQL базой данных для сохранения данных о продуктах, заказах и пользователях.
+
+	•	Email Уведомления: Через resend отправляются уведомления по email при успешной регистрации, завершении заказа и проверке пользователя.
+
+
+Технологии
+
+	•	Next.js 14.2.7
+	•	Prisma 5.19.1 (PostgreSQL)
+	•	React 18
+	•	Tailwind CSS 3.4.1
+	•	Zustand для управления состоянием
+	•	NextAuth для аутентификации
+	•	И другие различные сервисы и технологии
+
+Установка
+
+Предварительные требования
+
+	•	Node.js (версия 18 или выше)
+	•	PostgreSQL (для использования Prisma)
+
+Установка зависимостей
+
+	1.	Клонируйте репозиторий:
+
+git clone https://github.com/Oldnesss/pizzaMarket.git
+
+
+	2.	Перейдите в директорию проекта:
+
+cd pizza_next
+
+
+	3.	Установите зависимости:
+
+npm install
+
+
+	4.	Создайте файл .env в корне проекта и добавьте туда переменные окружения, указав строку подключения к базе данных, ключи API и т.д.:
+
+DATABASE_URL="postgresql://user:password@localhost:5432/mydatabase"
+NEXTAUTH_URL=http://localhost:3000
+# Добавьте другие переменные среды, если необходимо
+
+
+	5.	Выполните миграции базы данных:
+
+npx prisma db push
+
+
+	6.	(Опционально) Запустите Prisma Studio для управления базой данных:
+
+npm run prisma:studio
+
+
+
+Запуск проекта
+
+	•	Для запуска проекта в режиме разработки:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+	•	Для сборки и запуска проекта в продакшен-режиме:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+npm run build
+npm start
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Скрипты
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+	•	dev — запуск в режиме разработки.
+	•	build — сборка проекта.
+	•	start — запуск собранного проекта.
+	•	lint — проверка кода с использованием ESLint.
+	•	prisma:push — миграция схемы базы данных.
+	•	prisma:studio — запуск Prisma Studio.
+	•	prisma:seed — посев данных в базу данных.
+	•	postinstall — генерация Prisma client после установки зависимостей.
 
-## Deploy on Vercel
+Структура проекта
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+	•	pages/ — страницы Next.js.
+	•	components/ — общие компоненты интерфейса.
+	•	services/ — API-сервисы для работы с данными.
+	•	prisma/ — схема базы данных и скрипты для посева данных.
+	•	styles/ — стили проекта, в том числе Tailwind CSS.
+	•	public/ — публичные ресурсы, такие как изображения и шрифты.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# pizzaMarket
+Проект структурирован с разделением на папки components, lib, store, services, hooks и prisma для поддержки модульности и переиспользования. Основные страницы, такие как каталог продуктов, корзина и профиль, реализованы в папке app для соблюдения архитектуры Next.js 13/14

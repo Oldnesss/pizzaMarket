@@ -8,7 +8,7 @@ interface StoriesCarouselProps {
   onClickStory: (story: IStory, index: number) => void;
 }
 
-const StoriesCarousel: React.FC<StoriesCarouselProps> = ({
+export const StoriesCarousel: React.FC<StoriesCarouselProps> = ({
   stories,
   onClickStory,
 }) => {
@@ -61,4 +61,4 @@ const StoriesCarousel: React.FC<StoriesCarouselProps> = ({
   );
 };
 
-export default StoriesCarousel;
+
