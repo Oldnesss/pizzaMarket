@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { useIntersection } from "react-use";
 import { Title } from "./title";
 import { ProductCard } from "./product-card";
 import { cn } from "@/lib/utils";
 import { useCategoryStore } from "@/store/category";
 
 import { ProductWithRelations } from "@/@types/prisma";
+import { useCategoryIntersection } from "@/hooks";
 
 interface Props {
   title: string;
@@ -25,18 +25,16 @@ export const ProductGroupList: React.FC<Props> = ({
   className,
 }) => {
   const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
-  const intersectionRef = React.useRef(null);
-  const intersection = useIntersection(intersectionRef, {
-    threshold: 0.4,
-  });
+  const { ref, isVisible } = useCategoryIntersection(categoryId);
 
   React.useEffect(() => {
-    if (intersection?.isIntersecting) {
+    if (isVisible) {
       setActiveCategoryId(categoryId);
     }
-  }, [categoryId, intersection?.isIntersecting, title]);
+  }, [categoryId, isVisible]);
+  
   return (
-    <div className={className} id={title} ref={intersectionRef}>
+    <div className={cn( 'scroll-mt-[100px]',className)} id={categoryId.toString()} ref={ref}>
       <Title text={title} size="lg" className="font-extrabold mb-5" />
 
       <div className={cn("grid grid-cols-3 gap-[50px]", listClassName)}>
