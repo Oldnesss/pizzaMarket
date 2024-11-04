@@ -31,7 +31,7 @@ export const ProductGroupList: React.FC<Props> = ({
     if (isVisible) {
       setActiveCategoryId(categoryId);
     }
-  }, [categoryId, isVisible]);
+  }, [categoryId, isVisible, setActiveCategoryId]);
   
   return (
     <div className={cn( 'scroll-mt-[100px]',className)} id={categoryId.toString()} ref={ref}>

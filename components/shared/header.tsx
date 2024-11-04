@@ -52,7 +52,7 @@ export const Header: React.FC<Props> = ({
         });
       }, 1000);
     }
-  }, []);
+  }, [searchParams]);
 
   return (
     <header className={cn(" border-b", className)}>
